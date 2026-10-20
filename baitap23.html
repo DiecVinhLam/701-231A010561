@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài tập 23 - Đèn kéo quân</title>
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    background:radial-gradient(ellipse at 50% 42%,#25365b 0%,#101522 58%,#080b13 100%)
+}
+nav{
+    padding:22px clamp(18px,5vw,64px);
+    display:flex;justify-content:space-between;
+    align-items:center;gap:12px
+}
+nav a{
+    color:#bfdbfe;text-decoration:none;font-weight:bold
+}
+nav a:hover{
+    text-decoration:underline
+}
+.back{
+    border:1px solid #536581;border-radius:999px;padding:10px 16px
+}
+header{
+    text-align:center;padding:8px 20px 0
+}
+header p{
+    color:#cbd5e1;line-height:1.6
+}
+h1{
+    font-size:clamp(2rem,5vw,3.2rem);margin:12px 0
+}
+.hint{
+    display:inline-block;margin-top:8px;padding:9px 14px;border-radius:999px;background:#ffffff12;border:1px solid #ffffff20;color:#dbeafe;font-size:.9rem
+}
+.scene{
+    height:520px;max-width:1000px;margin:10px auto 0;display:flex;align-items:center;justify-content:center;perspective:1200px;overflow:visible
+}
+.lantern{
+    position:relative;width:230px;height:310px;transform-style:preserve-3d;animation:spin 18s linear infinite;transition:filter .3s
+}
+.lantern:hover{
+    animation-play-state:paused;filter:drop-shadow(0 0 28px #fbbf24)
+}
+.face{
+    position:absolute;
+    left:0;top:0;width:230px;height:310px;overflow:hidden;border:2px solid #f8d477;border-radius:10px;
+    background:#1c2940;backface-visibility:hidden;box-shadow:inset 0 0 25px #0007,0 0 16px #f59e0b20;transform-origin:center center
+}
+.face img{
+    width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s,filter .35s
+}
+.face:hover img{transform:scale(1.08);filter:brightness(1.08)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#fff4,transparent 35%,#0004)}
+.f1{transform:rotateY(0deg) translateZ(199px)}
+.f2{transform:rotateY(60deg) translateZ(199px)}
+.f3{transform:rotateY(120deg) translateZ(199px)}
+.f4{transform:rotateY(180deg) translateZ(199px)}
+.f5{transform:rotateY(240deg) translateZ(199px)}
+.f6{transform:rotateY(300deg) translateZ(199px)}
+.top-cap,.bottom-cap{
+    position:absolute;left:50%;width:0;height:0;transform:translateX(-50%);
+    border-left:145px solid transparent;border-right:145px solid transparent;
+    filter:drop-shadow(0 7px 8px #0008);pointer-events:none
+}
+.top-cap{top:-58px;border-bottom:70px solid #f5bd48}.bottom-cap{bottom:-48px;border-top:60px solid #d97706}
+.axis{
+    position:absolute;top:-62px;bottom:-55px;left:50%;width:7px;transform:translateX(-50%);
+    background:linear-gradient(90deg,#9a5a13,#ffe6a0,#b66b12);border-radius:8px;box-shadow:0 0 15px #fbbf24aa;pointer-events:none
+}
+.floor-glow{width:360px;height:48px;margin:-15px auto 0;background:#f59e0b22;border-radius:50%;filter:blur(18px)}
+@keyframes spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.controls{text-align:center;margin:0 auto 40px;padding:0 20px;color:#cbd5e1}
+.controls button{background:#fbbf24;color:#211405;border:0;padding:12px 20px;border-radius:999px;font-weight:bold;cursor:pointer;margin:8px}
+.controls button:hover{background:#fde68a}
+.controls small{display:block;margin-top:10px;color:#94a3b8}
+@media(max-width:600px){
+    .scene{height:410px;perspective:900px}
+    .lantern{transform:scale(.72);}
+    .face{width:190px;height:260px}
+    .f1{transform:rotateY(0deg) translateZ(164px)}
+    .f2{transform:rotateY(60deg) translateZ(164px)}
+    .f3{transform:rotateY(120deg) translateZ(164px)}
+    .f4{transform:rotateY(180deg) translateZ(164px)}
+    .f5{transform:rotateY(240deg) translateZ(164px)}
+    .f6{transform:rotateY(300deg) translateZ(164px)}
+    .top-cap{top:-48px;border-left-width:120px;border-right-width:120px;border-bottom-width:58px}
+    .bottom-cap{bottom:-40px;border-left-width:120px;border-right-width:120px;border-top-width:50px}}
+</style>
+</head>
+<body>
+<nav>
+    <a class="back" href="index.html">← Trang chủ</a>
+    <a href="images/ket-qua-bai-22.png" target="_blank" rel="noopener">Bài tập 22 ↗</a>
+</nav>
+<header>
+    <h1>🏮 Đèn kéo quân</h1>
+    <p>Sáu bức ảnh của mình xoay vòng quanh chiếc đèn 3D.</p>
+    <div class="hint">Di chuột lên một mặt ảnh để dừng · Rê chuột ra để quay tiếp</div>
+</header>
+<div class="scene">
+    <div class="lantern" id="lantern" aria-label="Đèn kéo quân gồm sáu ảnh">
+        <div class="axis"></div><div class="top-cap"></div><div class="bottom-cap"></div>
+        <div class="face f1"><img src="images/anh-1.jpg" alt="Ảnh 1"></div>
+        <div class="face f2"><img src="images/anh-2.jpg" alt="Ảnh 2"></div>
+        <div class="face f3"><img src="images/anh-3.jpg" alt="Ảnh 3"></div>
+        <div class="face f4"><img src="images/anh-4.jpg" alt="Ảnh 4"></div>
+        <div class="face f5"><img src="images/anh-5.jpg" alt="Ảnh 5"></div>
+        <div class="face f6"><img src="images/anh-6.jpg" alt="Ảnh 6"></div>
+    </div>
+</div>
+<div class="floor-glow"></div>
+<div class="controls">
+    <button id="toggle" type="button">Tạm dừng</button>
+    <button id="resume" type="button">Tiếp tục quay</button>
+    <small id="status" aria-live="polite">Đèn đang quay · Rê chuột vào ảnh để tạm dừng</small>
+</div>
+<script>
+const lantern=document.getElementById('lantern');
+const toggle=document.getElementById('toggle');
+const resume=document.getElementById('resume');
+const status=document.getElementById('status');
+let manuallyPaused=false;
+function update(){lantern.style.animationPlayState=manuallyPaused?'paused':'running';toggle.textContent=manuallyPaused?'Tiếp tục':'Tạm dừng';status.textContent=manuallyPaused?'Đèn đang tạm dừng':'Đèn đang quay · Rê chuột vào ảnh để tạm dừng';}
+lantern.addEventListener('mouseenter',()=>{if(!manuallyPaused)lantern.style.animationPlayState='paused';});
+lantern.addEventListener('mouseleave',()=>{if(!manuallyPaused)lantern.style.animationPlayState='running';});
+toggle.addEventListener('click',()=>{manuallyPaused=!manuallyPaused;update();});
+resume.addEventListener('click',()=>{manuallyPaused=false;update();});
+</script>
+</body>
+</html>

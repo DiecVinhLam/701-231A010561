@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Lý thuyết</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+            color: #243044;
+            background: #f3f6fb;
+        }
+
+        header {
+            padding: 42px 20px;
+            color: white;
+            text-align: center;
+            background: #1d4ed8;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: clamp(1.6rem, 4vw, 2.3rem);
+        }
+
+        main {
+            width: min(1000px, 92%);
+            margin: 30px auto;
+        }
+
+        section {
+            margin-bottom: 24px;
+            padding: 26px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(20, 40, 80, 0.07);
+        }
+
+        h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            color: #1d4ed8;
+            border-bottom: 2px solid #dbeafe;
+        }
+
+        h3 {
+            margin-bottom: 8px;
+            color: #1e40af;
+        }
+
+        code {
+            padding: 2px 5px;
+            color: #9d174d;
+            background: #fce7f3;
+            border-radius: 4px;
+        }
+
+        pre {
+            overflow-x: auto;
+            padding: 16px;
+            color: #e5e7eb;
+            background: #172033;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        pre code {
+            padding: 0;
+            color: inherit;
+            background: transparent;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #dbe3ef;
+        }
+
+        th {
+            color: #1e3a8a;
+            background: #eff6ff;
+        }
+
+        .note {
+            padding: 12px 16px;
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+        }
+
+        footer {
+            padding: 20px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 18px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PHẦN LÝ THUYẾT</h1>
+    </header>
+
+    <main>
+        <section id="cau-1">
+            <h2>Câu 1 (10 điểm): Phân biệt position: relative và position: absolute</h2>
+
+            <h3>1. Khái niệm</h3>
+            <ul>
+                <li><strong><code>position: relative</code>:</strong> Định vị phần tử tương đối so với vị trí ban đầu của nó. Phần tử vẫn giữ chỗ trong bố cục.</li>
+                <li><strong><code>position: absolute</code>:</strong> Định vị phần tử theo phần tử cha gần nhất có <code>position</code> khác <code>static</code>. Phần tử bị loại khỏi luồng bố cục thông thường.</li>
+            </ul>
+
+            <h3>2. Ví dụ minh họa</h3>
+            <pre><code>.container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}</code></pre>
+            <p>Trong ví dụ trên, <code>.container</code> làm mốc định vị, còn <code>.box</code> nằm cách mép trên và mép phải 10px.</p>
+            <ul>
+                <li><strong>Relative:</strong> Thường dùng để dịch chuyển nhẹ phần tử hoặc tạo mốc định vị cho phần tử con.</li>
+                <li><strong>Absolute:</strong> Thường dùng để đặt biểu tượng thông báo trên ảnh, nút đóng ở góc hộp thoại hoặc nhãn trên sản phẩm.</li>
+            </ul>
+
+            <h3>3. Responsive và hosting</h3>
+            <p>Khi thiết kế responsive, nên kết hợp đơn vị <code>%</code>, <code>rem</code>, <code>max-width</code> và media queries để bố cục thích ứng với nhiều kích thước màn hình. Nếu sử dụng <code>absolute</code> quá nhiều, các phần tử có thể chồng lấn trên điện thoại.</p>
+            <p>Hai thuộc tính này không ảnh hưởng trực tiếp đến việc deploy lên hosting. Tuy nhiên, cần kiểm tra website trên nhiều trình duyệt và thiết bị để bảo đảm giao diện hiển thị chính xác sau khi triển khai.</p>
+        </section>
+
+        <section id="cau-2">
+            <h2>Câu 2 (10 điểm): Quy trình đăng ký domain và cấu hình hosting</h2>
+
+            <h3>1. Quy trình thực hiện</h3>
+            <ol>
+                <li><strong>Đăng ký domain:</strong> Chọn tên miền, ví dụ <code>mywebsite.com</code>, tại nhà đăng ký tên miền.</li>
+                <li><strong>Chuẩn bị website:</strong> Hoàn thiện các file HTML, CSS và JavaScript.</li>
+                <li><strong>Chọn hosting:</strong> Tải mã nguồn lên hosting hoặc kết nối repository GitHub với nền tảng triển khai.</li>
+                <li><strong>Cấu hình DNS:</strong> Trỏ tên miền đến địa chỉ hoặc hệ thống máy chủ của hosting theo hướng dẫn của nhà cung cấp.</li>
+                <li><strong>Kiểm tra website:</strong> Truy cập tên miền, kiểm tra chức năng và bật HTTPS.</li>
+            </ol>
+
+            <h3>2. Vai trò của DNS</h3>
+            <p>DNS (Domain Name System) giúp chuyển đổi tên miền thành địa chỉ IP hoặc thông tin đích cần thiết để trình duyệt tìm đến máy chủ website.</p>
+            <p>Ví dụ: Khi người dùng nhập <code>mywebsite.com</code>, DNS giúp trình duyệt tìm đến hệ thống hosting tương ứng.</p>
+
+            <h3>3. Công cụ hỗ trợ deploy</h3>
+            <ul>
+                <li><strong>GitHub Pages:</strong> Miễn phí, phù hợp với website tĩnh sử dụng HTML, CSS và JavaScript.</li>
+                <li><strong>Netlify:</strong> Hỗ trợ deploy từ Git, cấu hình tên miền và HTTPS thuận tiện.</li>
+                <li><strong>Vercel:</strong> Hỗ trợ triển khai website tĩnh và các ứng dụng web hiện đại.</li>
+            </ul>
+
+            <h3>4. Rủi ro bảo mật</h3>
+            <ul>
+                <li>Không bật HTTPS có thể khiến dữ liệu truyền đi thiếu an toàn.</li>
+                <li>Đưa API key hoặc mật khẩu vào JavaScript phía client có thể làm lộ thông tin.</li>
+                <li>Cấu hình DNS sai có thể khiến website không truy cập được hoặc dẫn người dùng đến địa chỉ không mong muốn.</li>
+                <li>Phân quyền hosting không đúng có thể làm lộ hoặc bị sửa đổi dữ liệu.</li>
+            </ul>
+            <p class="note">Vì vậy, cần bật HTTPS, bảo vệ thông tin bí mật, phân quyền hợp lý và kiểm tra cấu hình DNS.</p>
+        </section>
+
+        <section id="cau-3">
+            <h2>Câu 3 (10 điểm): So sánh let, const và var trong JavaScript</h2>
+
+            <h3>1. Sự khác biệt</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Đặc điểm</th>
+                        <th>var</th>
+                        <th>let</th>
+                        <th>const</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Phạm vi</td>
+                        <td>Hàm hoặc toàn cục</td>
+                        <td>Khối lệnh <code>{}</code></td>
+                        <td>Khối lệnh <code>{}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Hoisting</td>
+                        <td>Được khởi tạo với <code>undefined</code></td>
+                        <td>Được đưa lên nhưng chưa thể truy cập trước khai báo</td>
+                        <td>Tương tự <code>let</code></td>
+                    </tr>
+                    <tr>
+                        <td>Khai báo lại cùng phạm vi</td>
+                        <td>Có</td>
+                        <td>Không</td>
+                        <td>Không</td>
+                    </tr>
+                    <tr>
+                        <td>Gán lại giá trị</td>
+                        <td>Có</td>
+                        <td>Có</td>
+                        <td>Không</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Ví dụ lỗi thường gặp</h3>
+            <pre><code>if (true) {
+    let age = 20;
+}
+
+console.log(age); // ReferenceError</code></pre>
+            <p><strong>Giải thích:</strong> Biến <code>age</code> chỉ tồn tại bên trong khối <code>if</code>, nên không thể truy cập ở bên ngoài.</p>
+
+            <p>Một lỗi khác khi dùng <code>var</code>:</p>
+            <pre><code>console.log(name); // undefined
+var name = "An";</code></pre>
+            <p>Do <code>var</code> được hoisting và khởi tạo bằng <code>undefined</code>, câu lệnh không báo lỗi nhưng kết quả không phải giá trị mong đợi.</p>
+
+            <h3>3. Cách debug bằng Chrome DevTools</h3>
+            <ol>
+                <li>Nhấn <code>F12</code> hoặc <code>Ctrl + Shift + I</code> để mở DevTools.</li>
+                <li>Chọn tab <strong>Sources</strong>, đặt breakpoint tại dòng có lỗi.</li>
+                <li>Tải lại trang và quan sát quá trình chạy.</li>
+                <li>Kiểm tra giá trị biến trong mục <strong>Scope</strong> hoặc dùng <strong>Console</strong> để xem thông báo lỗi.</li>
+            </ol>
+            <p class="note"><strong>Kết luận:</strong> Nên ưu tiên <code>const</code> khi không cần gán lại biến, dùng <code>let</code> khi cần thay đổi giá trị và hạn chế sử dụng <code>var</code> để tránh lỗi phạm vi.</p>
+        </section>
+
+        <section id="cau-4">
+            <h2>Câu 4 (10 điểm): Event Delegation trong JavaScript</h2>
+
+            <h3>1. Khái niệm</h3>
+            <p>Event Delegation (ủy quyền sự kiện) là kỹ thuật gắn một trình xử lý sự kiện vào phần tử cha để xử lý sự kiện phát sinh từ các phần tử con thông qua cơ chế nổi bọt sự kiện (<em>event bubbling</em>).</p>
+
+            <h3>2. Ví dụ danh sách động</h3>
+            <pre><code>&lt;ul id="list"&gt;
+    &lt;li&gt;Sản phẩm 1&lt;/li&gt;
+    &lt;li&gt;Sản phẩm 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;button id="add"&gt;Thêm sản phẩm&lt;/button&gt;</code></pre>
+
+            <pre><code>const list = document.getElementById("list");
+
+list.addEventListener("click", function(event) {
+    if (event.target.tagName === "LI") {
+        alert(event.target.textContent);
+    }
+});
+
+document.getElementById("add").addEventListener("click", function() {
+    const item = document.createElement("li");
+    item.textContent = "Sản phẩm mới";
+    list.appendChild(item);
+});</code></pre>
+
+            <p><strong>Giải thích:</strong> Khi nhấn vào một phần tử <code>li</code>, sự kiện nổi bọt lên <code>ul</code> và được xử lý tại đó. Các phần tử mới được thêm vào vẫn hoạt động mà không cần gắn sự kiện riêng.</p>
+
+            <h3>3. Lợi ích khi kết hợp HTML/CSS</h3>
+            <ul>
+                <li><strong>HTML:</strong> Tạo cấu trúc danh sách và các phần tử con.</li>
+                <li><strong>CSS:</strong> Tạo giao diện, hiệu ứng hover và trạng thái tương tác.</li>
+                <li><strong>JavaScript:</strong> Xử lý sự kiện tập trung tại phần tử cha.</li>
+            </ul>
+            <p>Event Delegation giúp giảm số lượng trình xử lý sự kiện, tiết kiệm bộ nhớ và thuận tiện khi quản lý danh sách động. Nhờ đó, mã nguồn dễ bảo trì và có thể cải thiện hiệu suất khi danh sách có nhiều phần tử.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Phần lý thuyết — HTML, CSS, JavaScript, Domain &amp; Hosting</p>
+    </footer>
+</body>
+</html>
